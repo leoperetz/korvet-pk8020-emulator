@@ -21,6 +21,9 @@
  * (allegro, SDL ...)
  */
 
+#include "unistd.h"
+#define __USE_XOPEN
+
 #include "host.h"
 #include "verbose.h"
 #include <allegro.h>

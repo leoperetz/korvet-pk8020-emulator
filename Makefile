@@ -2,7 +2,7 @@
 LDLIBS = $(shell pkg-config allegro --libs)
 LDLIBS += -lpthread
 CFLAGS = -g -O0 -Isrc
-CFLAGS += -Wall -Wno-deprecated-declarations
+CFLAGS += -Wall -Wno-deprecated-declarations -D _BSD_SOURCE -std=c99
 
 # can update CFLAGS
 -include config.mk
@@ -40,7 +40,7 @@ endif
 objs1	= $(patsubst %.c,%.o,$(sources))
 objs	= $(addprefix objs/,$(objs1))
 
-VPATH	= src 
+VPATH	= src
 
 .PHONY: all clean depend check
 
@@ -50,7 +50,7 @@ check:
 	cppcheck  -j 4 --inconclusive --enable=all -Isrc src/*.c src/*.h  2>!cppcheck-errors.txt
 	echo please check !cppcheck-errors.txt
 
-clean: 
+clean:
 	rm -rf objs
 	rm -f kdbg
 
